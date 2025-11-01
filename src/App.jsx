@@ -380,60 +380,81 @@ const MTGDeckBuilder = () => {
   if (authState === 'login') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center p-4">
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+          body { font-family: 'Poppins', sans-serif; }
+        `}</style>
         <div className="w-full max-w-md">
-          <div className="bg-gray-800 bg-opacity-50 backdrop-blur rounded-lg p-8 border border-gray-700">
-            <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              CardBuilder
-            </h1>
-            <p className="text-gray-400 mb-6">MTG Deck Builder</p>
-
-            <form onSubmit={handleLogin}>
-              <div className="mb-4">
-                <label className="block text-sm font-medium mb-2">Username</label>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-sm font-medium mb-2">Password</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
-                  required
-                />
-              </div>
-
-              {error && (
-                <div className="mb-4 p-3 bg-red-900 border border-red-700 rounded flex gap-2 text-red-200">
-                  <AlertCircle size={20} />
-                  {error}
+          <div className="relative">
+            {/* Glowing background effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur-2xl opacity-20"></div>
+            
+            <div className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black backdrop-blur-xl rounded-2xl p-10 border border-purple-500/30 shadow-2xl">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <div className="inline-block p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg mb-4">
+                  <span className="text-2xl">🎮</span>
                 </div>
-              )}
+                <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+                  CardBuilder
+                </h1>
+                <p className="text-gray-400 text-sm">Build legendary MTG decks</p>
+              </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 text-white font-semibold py-2 rounded-lg transition"
-              >
-                {loading ? 'Logging in...' : 'Login'}
-              </button>
-            </form>
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-300 mb-2">Username</label>
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full bg-gray-800/50 text-white px-4 py-3 rounded-lg border border-purple-500/30 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition"
+                    placeholder="Enter your username"
+                    required
+                  />
+                </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-700">
-              <p className="text-gray-400 text-sm mb-4">Don't have an account?</p>
-              <button
-                onClick={() => setAuthState('register')}
-                className="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 rounded-lg transition"
-              >
-                Create Account
-              </button>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-300 mb-2">Password</label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full bg-gray-800/50 text-white px-4 py-3 rounded-lg border border-purple-500/30 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+
+                {error && (
+                  <div className="p-4 bg-red-900/20 border border-red-500/30 rounded-lg flex gap-3 text-red-300">
+                    <AlertCircle size={20} className="flex-shrink-0 mt-0.5" />
+                    <span className="text-sm">{error}</span>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-600 disabled:to-gray-700 text-white font-bold py-3 rounded-lg transition transform hover:scale-105 active:scale-95 duration-200 shadow-lg"
+                >
+                  {loading ? 'Logging in...' : 'Login'}
+                </button>
+              </form>
+
+              <div className="mt-8 pt-8 border-t border-purple-500/20">
+                <p className="text-gray-400 text-sm text-center mb-4">New to CardBuilder?</p>
+                <button
+                  onClick={() => setAuthState('register')}
+                  className="w-full bg-gradient-to-r from-pink-600/20 to-purple-600/20 hover:from-pink-600/30 hover:to-purple-600/30 text-pink-300 font-semibold py-3 rounded-lg transition border border-pink-500/30 hover:border-pink-500/50"
+                >
+                  Create Account
+                </button>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500 rounded-full blur-3xl opacity-5 -z-10"></div>
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-pink-500 rounded-full blur-3xl opacity-5 -z-10"></div>
             </div>
           </div>
         </div>
@@ -445,72 +466,90 @@ const MTGDeckBuilder = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center p-4">
         <div className="w-full max-w-md">
-          <div className="bg-gray-800 bg-opacity-50 backdrop-blur rounded-lg p-8 border border-gray-700">
-            <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Create Account
-            </h1>
-            <p className="text-gray-400 mb-6">Join CardBuilder</p>
-
-            <form onSubmit={handleRegister}>
-              <div className="mb-4">
-                <label className="block text-sm font-medium mb-2">Username</label>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-sm font-medium mb-2">Email</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-sm font-medium mb-2">Password</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
-                  required
-                />
-              </div>
-
-              {error && (
-                <div className="mb-4 p-3 bg-red-900 border border-red-700 rounded flex gap-2 text-red-200">
-                  <AlertCircle size={20} />
-                  {error}
+          <div className="relative">
+            {/* Glowing background effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur-2xl opacity-20"></div>
+            
+            <div className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black backdrop-blur-xl rounded-2xl p-10 border border-purple-500/30 shadow-2xl">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <div className="inline-block p-3 bg-gradient-to-br from-pink-600 to-purple-600 rounded-lg mb-4">
+                  <span className="text-2xl">✨</span>
                 </div>
-              )}
+                <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-pink-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Join CardBuilder
+                </h1>
+                <p className="text-gray-400 text-sm">Create your deck collection</p>
+              </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-pink-600 hover:bg-pink-700 disabled:bg-gray-600 text-white font-semibold py-2 rounded-lg transition"
-              >
-                {loading ? 'Creating...' : 'Create Account'}
-              </button>
-            </form>
+              <form onSubmit={handleRegister} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-300 mb-2">Username</label>
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full bg-gray-800/50 text-white px-4 py-3 rounded-lg border border-purple-500/30 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition"
+                    placeholder="Choose a username"
+                    required
+                  />
+                </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-700">
-              <button
-                onClick={() => {
-                  setAuthState('login');
-                  setError('');
-                }}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition"
-              >
-                Back to Login
-              </button>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-300 mb-2">Email</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full bg-gray-800/50 text-white px-4 py-3 rounded-lg border border-purple-500/30 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-300 mb-2">Password</label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full bg-gray-800/50 text-white px-4 py-3 rounded-lg border border-purple-500/30 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition"
+                    placeholder="Min 8 characters"
+                    required
+                  />
+                </div>
+
+                {error && (
+                  <div className="p-4 bg-red-900/20 border border-red-500/30 rounded-lg flex gap-3 text-red-300">
+                    <AlertCircle size={20} className="flex-shrink-0 mt-0.5" />
+                    <span className="text-sm">{error}</span>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 disabled:from-gray-600 disabled:to-gray-700 text-white font-bold py-3 rounded-lg transition transform hover:scale-105 active:scale-95 duration-200 shadow-lg"
+                >
+                  {loading ? 'Creating...' : 'Create Account'}
+                </button>
+              </form>
+
+              <div className="mt-8 pt-8 border-t border-purple-500/20">
+                <button
+                  onClick={() => {
+                    setAuthState('login');
+                    setError('');
+                  }}
+                  className="w-full bg-gradient-to-r from-purple-600/20 to-pink-600/20 hover:from-purple-600/30 hover:to-pink-600/30 text-purple-300 font-semibold py-3 rounded-lg transition border border-purple-500/30 hover:border-purple-500/50"
+                >
+                  Back to Login
+                </button>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-pink-500 rounded-full blur-3xl opacity-5 -z-10"></div>
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-purple-500 rounded-full blur-3xl opacity-5 -z-10"></div>
             </div>
           </div>
         </div>
