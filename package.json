@@ -5,14 +5,11 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "lucide-react": "latest",
-    "papaparse": "latest"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
-    "start": "npm run build:css && react-scripts start",
-    "build": "npm run build:css && react-scripts build",
-    "build:css": "tailwindcss -i ./src/index.css -o ./src/output.css",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "dev": "react-scripts start"
   },
   "eslintConfig": {
