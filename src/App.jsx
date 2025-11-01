@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './output.css';
 import { Upload, LogOut, Search, Plus, Trash2, ChevronDown, AlertCircle, Send, MessageCircle, X } from 'lucide-react';
 
 const MTGDeckBuilder = () => {
